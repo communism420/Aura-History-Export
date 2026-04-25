@@ -1,12 +1,22 @@
 # Aura History Export Privacy Policy
 
-Last updated: April 24, 2026
+Last updated: April 26, 2026
 
 Aura History Export is a Chromium extension for exporting browser history to local files and, when the user enables it, keeping a local browser-profile archive for future exports.
 
 ## Single Purpose
 
 Aura History Export has one purpose: let the user export, import, filter, preview, and locally archive browser history data as local files.
+
+## Open-Source Transparency
+
+Aura History Export is fully open-source under the MIT License. The public source code is available at:
+
+https://github.com/communism420/Aura-History-Export
+
+Users, reviewers, and developers can inspect the source code to verify how browser history is handled, how local files are generated, and that the extension does not include analytics, tracking, remote code loading, or external service calls.
+
+Open-source availability does not change the extension's data practices: user data is still processed locally in the browser and is not sent to the developer or to third parties.
 
 ## Data the Extension Handles
 
@@ -81,13 +91,23 @@ Use the developer contact channel listed on the Aura History Export Chrome Web S
 
 # Политика конфиденциальности Aura History Export
 
-Дата обновления: 24 апреля 2026 года
+Дата обновления: 26 апреля 2026 года
 
 Aura History Export - расширение Chromium для экспорта истории браузера в локальные файлы и, если пользователь включит эту функцию, ведения локального архива в профиле браузера.
 
 ## Основная цель
 
 У Aura History Export одна цель: дать пользователю экспортировать, импортировать, фильтровать, просматривать и локально архивировать историю браузера в локальные файлы.
+
+## Прозрачность open-source
+
+Aura History Export является полностью open-source проектом под лицензией MIT. Публичный исходный код доступен здесь:
+
+https://github.com/communism420/Aura-History-Export
+
+Пользователи, ревьюеры и разработчики могут проверить исходный код и убедиться, как расширение обрабатывает историю браузера, создает локальные файлы и что в нем нет аналитики, трекинга, загрузки удаленного кода или обращений к внешним сервисам.
+
+Доступность исходного кода не меняет практики обработки данных: пользовательские данные по-прежнему обрабатываются локально в браузере и не отправляются разработчику или третьим лицам.
 
 ## Какие данные обрабатывает расширение
 
