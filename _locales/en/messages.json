@@ -1,0 +1,97 @@
+{
+  "extensionName": {
+    "message": "Aura History Export",
+    "description": "Extension name shown in Chromium UI."
+  },
+  "extensionDescription": {
+    "message": "Fully open-source Chromium browser history export to different popular formats",
+    "description": "Extension description shown in Chromium UI."
+  },
+  "subtitle": {
+    "message": "Chromium history export"
+  },
+  "rangeLabel": {
+    "message": "Range"
+  },
+  "rangeLastDay": {
+    "message": "Last 24 hours"
+  },
+  "rangeLastWeek": {
+    "message": "Last 7 days"
+  },
+  "rangeLastMonth": {
+    "message": "Last 30 days"
+  },
+  "rangeLastQuarter": {
+    "message": "Last 90 days"
+  },
+  "rangeAll": {
+    "message": "All available history"
+  },
+  "formatLabel": {
+    "message": "Format"
+  },
+  "languageLabel": {
+    "message": "Language"
+  },
+  "languageEnglish": {
+    "message": "English"
+  },
+  "languageRussian": {
+    "message": "Russian"
+  },
+  "exportButton": {
+    "message": "Export"
+  },
+  "statusReady": {
+    "message": "Ready to export"
+  },
+  "statusReadingHistory": {
+    "message": "Reading history"
+  },
+  "statusNoRecords": {
+    "message": "No records found for the selected range"
+  },
+  "statusCreatingFile": {
+    "message": "Creating file"
+  },
+  "statusExportComplete": {
+    "message": "Export complete"
+  },
+  "statusProcessingVisits": {
+    "message": "Processing visits"
+  },
+  "exportFailedError": {
+    "message": "Failed to export history"
+  },
+  "unknownFormatError": {
+    "message": "Unknown export format"
+  },
+  "columnVisitTime": {
+    "message": "Visit time"
+  },
+  "columnPageTitle": {
+    "message": "Page title"
+  },
+  "columnDomain": {
+    "message": "Domain"
+  },
+  "sheetHistory": {
+    "message": "History"
+  },
+  "lineVisitTime": {
+    "message": "Visit time"
+  },
+  "linePageTitle": {
+    "message": "Page title"
+  },
+  "lineDomain": {
+    "message": "Domain"
+  },
+  "noDomain": {
+    "message": "no domain"
+  },
+  "downloadFallbackWarning": {
+    "message": "Download uses a local browser Blob link."
+  }
+}

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="extensionName">Aura History Export</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <div class="brand">
+          <img class="brand-logo" src="assets/logo.png" alt="" aria-hidden="true">
+          <div>
+            <h1 data-i18n="extensionName">Aura History Export</h1>
+            <p data-i18n="subtitle">Professional local history export</p>
+          </div>
+        </div>
+        <label class="language-field">
+          <span data-i18n="languageLabel">Language</span>
+          <select id="language">
+            <option value="en" data-i18n="languageEnglish">English</option>
+            <option value="ru" data-i18n="languageRussian">Russian</option>
+            <option value="es" data-i18n="languageSpanish">Spanish</option>
+            <option value="de" data-i18n="languageGerman">German</option>
+            <option value="fr" data-i18n="languageFrench">French</option>
+            <option value="pt" data-i18n="languagePortuguese">Portuguese</option>
+            <option value="uk" data-i18n="languageUkrainian">Ukrainian</option>
+          </select>
+        </label>
+      </header>
+
+      <section class="mode-switch-bar" aria-label="Mode">
+        <div>
+          <strong data-i18n="beginnerModeTitle">Beginner mode</strong>
+          <span data-i18n="beginnerModeHint">Only the essential export settings are shown.</span>
+        </div>
+        <label class="ios-switch">
+          <input id="beginnerMode" type="checkbox">
+          <span class="ios-switch-track" aria-hidden="true"></span>
+        </label>
+      </section>
+
+      <nav class="tabs expert-only" aria-label="Sections">
+        <button class="tab-button is-active" type="button" data-tab-button="export" data-i18n="tabExport">Export</button>
+        <button class="tab-button" type="button" data-tab-button="import" data-i18n="tabImport">Import</button>
+        <button class="tab-button" type="button" data-tab-button="archive" data-i18n="tabArchive">Archive</button>
+        <button class="tab-button" type="button" data-tab-button="privacy" data-i18n="tabPrivacy">Privacy</button>
+      </nav>
+
+      <section class="tab-panel is-active" data-tab-panel="export">
+        <div class="control-grid">
+          <label class="field">
+            <span data-i18n="rangeLabel">Range</span>
+            <select id="range">
+              <option value="1" data-i18n="rangeLastDay">Last 24 hours</option>
+              <option value="7" data-i18n="rangeLastWeek" selected>Last 7 days</option>
+              <option value="30" data-i18n="rangeLastMonth">Last 30 days</option>
+              <option value="90" data-i18n="rangeLastQuarter">Last 90 days</option>
+              <option value="all" data-i18n="rangeAll">All available history</option>
+              <option value="custom" data-i18n="rangeCustom">Custom dates</option>
+            </select>
+          </label>
+
+          <label class="field date-field">
+            <span data-i18n="startDateLabel">Start date</span>
+            <input id="startDate" type="date">
+          </label>
+
+          <label class="field date-field">
+            <span data-i18n="endDateLabel">End date</span>
+            <input id="endDate" type="date">
+          </label>
+
+          <label class="field">
+            <span data-i18n="formatLabel">Format</span>
+            <select id="format">
+              <option value="xlsx" selected>XLSX</option>
+              <option value="csv">CSV</option>
+              <option value="json">JSON</option>
+              <option value="docx">DOCX</option>
+              <option value="txt">TXT</option>
+              <option value="html">HTML</option>
+            </select>
+          </label>
+
+          <label class="field expert-only">
+            <span data-i18n="modeLabel">Mode</span>
+            <select id="mode">
+              <option value="visits" selected data-i18n="modeVisits">Every visit</option>
+              <option value="domains" data-i18n="modeDomains">Group by domain</option>
+            </select>
+          </label>
+        </div>
+
+        <details class="section-box expert-only" open>
+          <summary data-i18n="sourcesTitle">Sources</summary>
+          <div class="checkbox-grid">
+            <label><input id="sourceBrowser" type="checkbox" checked> <span data-i18n="sourceBrowser">Browser history</span></label>
+            <label><input id="sourceArchive" type="checkbox"> <span data-i18n="sourceArchive">Local archive</span></label>
+            <label><input id="sourceTakeout" type="checkbox"> <span data-i18n="sourceTakeout">Imported Takeout</span></label>
+          </div>
+        </details>
+
+        <details class="section-box" open>
+          <summary data-i18n="columnsTitle">Columns</summary>
+          <div class="checkbox-grid" id="columnList">
+            <label><input type="checkbox" value="visitTime" checked> <span data-i18n="columnVisitTime">Visit time</span></label>
+            <label><input type="checkbox" value="title" checked> <span data-i18n="columnPageTitle">Page title</span></label>
+            <label><input type="checkbox" value="domain" checked> <span data-i18n="columnDomain">Domain</span></label>
+            <label><input type="checkbox" value="url" checked> <span data-i18n="columnUrl">URL</span></label>
+            <label><input type="checkbox" value="visitCount"> <span data-i18n="columnVisitCount">Visit count</span></label>
+            <label><input type="checkbox" value="typedCount"> <span data-i18n="columnTypedCount">Typed count</span></label>
+            <label><input type="checkbox" value="lastVisitTime"> <span data-i18n="columnLastVisitTime">Last visit</span></label>
+            <label><input type="checkbox" value="transition"> <span data-i18n="columnTransition">Transition</span></label>
+            <label><input type="checkbox" value="referringVisitId"> <span data-i18n="columnReferrer">Referrer visit ID</span></label>
+            <label><input type="checkbox" value="source"> <span data-i18n="columnSource">Source</span></label>
+          </div>
+        </details>
+
+        <details class="section-box expert-only">
+          <summary data-i18n="filtersTitle">Filters</summary>
+          <div class="filter-grid">
+            <label class="field wide">
+              <span data-i18n="searchLabel">Search in title, URL, or domain</span>
+              <input id="searchText" type="search" autocomplete="off">
+            </label>
+            <label class="field">
+              <span data-i18n="includeDomainsLabel">Include domains</span>
+              <textarea id="includeDomains" rows="3" spellcheck="false"></textarea>
+            </label>
+            <label class="field">
+              <span data-i18n="excludeDomainsLabel">Exclude domains</span>
+              <textarea id="excludeDomains" rows="3" spellcheck="false"></textarea>
+            </label>
+            <div class="field">
+              <span data-i18n="protocolsLabel">Protocols</span>
+              <div class="inline-checks">
+                <label><input id="protocolHttps" type="checkbox" checked> HTTPS</label>
+                <label><input id="protocolHttp" type="checkbox" checked> HTTP</label>
+                <label><input id="protocolOther" type="checkbox" checked> <span data-i18n="protocolOther">Other</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <span data-i18n="cleanupLabel">Cleanup</span>
+              <div class="stacked-checks">
+                <label><input id="excludeLocalhost" type="checkbox"> <span data-i18n="excludeLocalhost">Exclude localhost</span></label>
+                <label><input id="requireTitle" type="checkbox"> <span data-i18n="requireTitle">Require page title</span></label>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <div class="actions">
+          <button id="previewButton" class="expert-only" type="button" data-i18n="previewButton">Preview</button>
+          <button id="exportButton" type="button" data-i18n="exportButton">Export</button>
+          <button id="cancelButton" class="secondary" type="button" hidden data-i18n="cancelButton">Cancel</button>
+        </div>
+
+        <section class="status" aria-live="polite">
+          <div class="status-row">
+            <span id="statusText" data-i18n="statusReady">Ready to export</span>
+            <span id="statusCount"></span>
+          </div>
+          <progress id="progress" value="0" max="100" hidden></progress>
+        </section>
+
+        <section class="preview expert-only">
+          <div class="preview-header">
+            <h2 data-i18n="previewTitle">Preview</h2>
+            <span id="previewStats"></span>
+          </div>
+          <div class="table-wrap">
+            <table id="previewTable">
+              <thead></thead>
+              <tbody>
+                <tr><td data-i18n="previewEmpty">Run preview to inspect the export.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="import">
+        <div class="section-box import-box">
+          <h2 data-i18n="takeoutTitle">Google Takeout import</h2>
+          <p data-i18n="takeoutHint">Select BrowserHistory.json, CSV, or a Takeout ZIP that contains browser history.</p>
+          <input id="takeoutFiles" type="file" accept=".json,.csv,.zip,application/json,text/csv,application/zip" multiple>
+          <div class="actions">
+            <button id="importButton" type="button" data-i18n="importButton">Import</button>
+            <button id="clearTakeoutButton" class="secondary" type="button" data-i18n="clearTakeoutButton">Clear imported data</button>
+          </div>
+          <p id="importStatus" class="muted"></p>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="archive">
+        <div class="section-box">
+          <h2 data-i18n="archiveTitle">Local archive</h2>
+          <p data-i18n="archiveHint">When enabled, new visits are saved locally in this browser profile so future exports can keep them after Chrome removes older local history.</p>
+          <label class="switch-row">
+            <input id="archiveEnabled" type="checkbox">
+            <span data-i18n="archiveEnableLabel">Save new visits to local archive</span>
+          </label>
+          <div class="actions">
+            <button id="backfillArchiveButton" type="button" data-i18n="backfillArchiveButton">Archive current range</button>
+            <button id="clearArchiveButton" class="secondary" type="button" data-i18n="clearArchiveButton">Clear local archive</button>
+          </div>
+          <p id="archiveStatus" class="muted"></p>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="privacy">
+        <div class="section-box">
+          <h2 data-i18n="privacyTitle">Privacy</h2>
+          <ul class="privacy-list">
+            <li data-i18n="privacyLocal">All processing happens locally in your browser.</li>
+            <li data-i18n="privacyNoServer">No history is sent to a server.</li>
+            <li data-i18n="privacyPermissions">Permissions are limited to browser history and local settings storage.</li>
+            <li data-i18n="privacyArchive">The optional archive is stored in this browser profile with IndexedDB.</li>
+            <li data-i18n="privacyTakeout">Imported Takeout data stays local until you clear it.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

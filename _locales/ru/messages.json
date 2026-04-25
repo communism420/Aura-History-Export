@@ -1,0 +1,97 @@
+{
+  "extensionName": {
+    "message": "Aura History Export",
+    "description": "Название расширения в интерфейсе Chromium."
+  },
+  "extensionDescription": {
+    "message": "Полностью open-source экспорт истории Chromium-браузера в популярные локальные форматы.",
+    "description": "Описание расширения в интерфейсе Chromium."
+  },
+  "subtitle": {
+    "message": "Экспорт истории Chromium"
+  },
+  "rangeLabel": {
+    "message": "Период"
+  },
+  "rangeLastDay": {
+    "message": "Последние 24 часа"
+  },
+  "rangeLastWeek": {
+    "message": "Последние 7 дней"
+  },
+  "rangeLastMonth": {
+    "message": "Последние 30 дней"
+  },
+  "rangeLastQuarter": {
+    "message": "Последние 90 дней"
+  },
+  "rangeAll": {
+    "message": "Вся доступная история"
+  },
+  "formatLabel": {
+    "message": "Формат"
+  },
+  "languageLabel": {
+    "message": "Язык"
+  },
+  "languageEnglish": {
+    "message": "Английский"
+  },
+  "languageRussian": {
+    "message": "Русский"
+  },
+  "exportButton": {
+    "message": "Экспортировать"
+  },
+  "statusReady": {
+    "message": "Готово к экспорту"
+  },
+  "statusReadingHistory": {
+    "message": "Чтение истории"
+  },
+  "statusNoRecords": {
+    "message": "За выбранный период записей не найдено"
+  },
+  "statusCreatingFile": {
+    "message": "Создание файла"
+  },
+  "statusExportComplete": {
+    "message": "Экспорт завершен"
+  },
+  "statusProcessingVisits": {
+    "message": "Обработка посещений"
+  },
+  "exportFailedError": {
+    "message": "Не удалось экспортировать историю"
+  },
+  "unknownFormatError": {
+    "message": "Неизвестный формат экспорта"
+  },
+  "columnVisitTime": {
+    "message": "Время посещения"
+  },
+  "columnPageTitle": {
+    "message": "Название страницы"
+  },
+  "columnDomain": {
+    "message": "Домен"
+  },
+  "sheetHistory": {
+    "message": "История"
+  },
+  "lineVisitTime": {
+    "message": "Время посещения"
+  },
+  "linePageTitle": {
+    "message": "Название страницы"
+  },
+  "lineDomain": {
+    "message": "Домен"
+  },
+  "noDomain": {
+    "message": "нет домена"
+  },
+  "downloadFallbackWarning": {
+    "message": "Скачивание выполняется через локальную Blob-ссылку."
+  }
+}

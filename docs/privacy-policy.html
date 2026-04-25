@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aura History Export Privacy Policy</title>
+    <meta name="description" content="Privacy Policy for the Aura History Export Chromium extension.">
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f8fb;
+        --ink: #17212b;
+        --muted: #5b6775;
+        --panel: #ffffff;
+        --line: #d9e2ec;
+        --blue: #1667f2;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.6 Arial, Helvetica, sans-serif;
+      }
+      main {
+        width: min(960px, calc(100% - 32px));
+        margin: 32px auto;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 32px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--line);
+      }
+      header img {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+      }
+      h1, h2 {
+        line-height: 1.2;
+      }
+      h1 {
+        margin: 0 0 4px;
+        font-size: 32px;
+      }
+      h2 {
+        margin-top: 30px;
+        font-size: 22px;
+      }
+      p, li {
+        color: var(--ink);
+      }
+      .muted {
+        margin: 0;
+        color: var(--muted);
+      }
+      code {
+        padding: 2px 5px;
+        border-radius: 5px;
+        background: #eef3f8;
+      }
+      .notice {
+        margin: 22px 0;
+        padding: 14px 16px;
+        border-left: 4px solid var(--blue);
+        background: #edf5ff;
+      }
+      hr {
+        margin: 40px 0;
+        border: 0;
+        border-top: 1px solid var(--line);
+      }
+      @media (max-width: 640px) {
+        main { padding: 22px; }
+        header { align-items: flex-start; }
+        h1 { font-size: 26px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="logo.png" alt="">
+        <div>
+          <h1>Aura History Export Privacy Policy</h1>
+          <p class="muted">Last updated: April 24, 2026</p>
+        </div>
+      </header>
+
+      <section class="notice">
+        Aura History Export processes browser history locally in the user's browser profile. It does not send history, imported files, exported files, archive data, or settings to the developer or to third-party servers.
+      </section>
+
+      <h2>Single Purpose</h2>
+      <p>Aura History Export has one purpose: let the user export, import, filter, preview, and locally archive browser history data as local files.</p>
+
+      <h2>Data the Extension Handles</h2>
+      <ul>
+        <li>Browser history records available through the Chromium History API, including URLs, page titles, domains, visit times, visit counts, typed counts, transition types, and referring visit IDs.</li>
+        <li>Files the user explicitly imports from Google Takeout or compatible history exports.</li>
+        <li>Local export settings, selected language, interface mode, filters, selected columns, and local archive settings.</li>
+        <li>Optional local archive records saved after the user enables the local archive feature.</li>
+      </ul>
+      <p>Aura History Export does not ask for account credentials, payment information, health information, precise location, contact lists, email content, messages, cookies, passwords, or authentication tokens.</p>
+
+      <h2>How Data Is Used</h2>
+      <p>The extension uses browser history data only to provide the visible features requested by the user: local export files, previews, filters, column choices, Takeout import, and the optional local archive.</p>
+
+      <h2>Local Processing and Storage</h2>
+      <p>All processing happens locally in the browser. Settings are stored locally with browser storage mechanisms. Imported Takeout data and optional archive records are stored locally in IndexedDB in the current browser profile. Generated export files are saved only where the user's browser saves downloads.</p>
+      <p>Users can delete local extension data by using the clear controls in the extension, clearing browser extension/site data, or uninstalling the extension.</p>
+
+      <h2>Sharing and Transfer</h2>
+      <p>Aura History Export does not sell, rent, share, transfer, or disclose user data to third parties. It does not use user data for advertising, retargeting, personalized ads, credit checks, or data-broker activity.</p>
+      <p>The extension contains no analytics, telemetry, remote code loading, tracking pixels, or external service calls.</p>
+
+      <h2>Chrome Web Store Limited Use Disclosure</h2>
+      <ul>
+        <li>Allowed use: browser history data is used only to provide and improve the extension's single purpose and user-facing export/archive/import features.</li>
+        <li>Allowed transfer: the extension does not transfer user data to the developer or third parties.</li>
+        <li>Prohibited advertising: user data is not used or transferred for advertising.</li>
+        <li>Prohibited human interaction: no developer, employee, or contractor can read user history through the extension because the extension does not transmit it.</li>
+      </ul>
+
+      <h2>Permissions</h2>
+      <ul>
+        <li><code>history</code>: required to read browser history records selected for export, preview, filtering, and optional local archive backfill.</li>
+        <li><code>storage</code>: required to store local extension settings and the local archive enabled flag.</li>
+      </ul>
+      <p>The extension does not request host permissions and does not inject content scripts into websites.</p>
+
+      <h2>Security</h2>
+      <p>Because user data stays local, there is no network transmission of personal or sensitive user data by the extension. If this policy is hosted on a website, the website should be served over HTTPS.</p>
+
+      <h2>Children</h2>
+      <p>Aura History Export is not directed to children under 13. The extension does not knowingly collect personal information from children.</p>
+
+      <h2>Changes</h2>
+      <p>This policy may be updated when the extension's functionality or data practices change. Material changes should be reflected in the Chrome Web Store listing and in this policy before or at the time the updated extension is published.</p>
+
+      <h2>Contact</h2>
+      <p>Use the developer contact channel listed on the Aura History Export Chrome Web Store page for privacy questions or deletion requests.</p>
+
+      <hr>
+
+      <h1>Политика конфиденциальности Aura History Export</h1>
+      <p class="muted">Дата обновления: 24 апреля 2026 года</p>
+
+      <h2>Основная цель</h2>
+      <p>У Aura History Export одна цель: дать пользователю экспортировать, импортировать, фильтровать, просматривать и локально архивировать историю браузера в локальные файлы.</p>
+
+      <h2>Какие данные обрабатывает расширение</h2>
+      <ul>
+        <li>Записи истории браузера, доступные через Chromium History API: URL, названия страниц, домены, время посещений, количество посещений, количество ручных вводов, типы переходов и ID визитов-источников.</li>
+        <li>Файлы Google Takeout или совместимые файлы истории, которые пользователь явно выбрал для импорта.</li>
+        <li>Локальные настройки экспорта, выбранный язык, режим интерфейса, фильтры, выбранные столбцы и настройки локального архива.</li>
+        <li>Записи локального архива, если пользователь включил архивирование.</li>
+      </ul>
+      <p>Aura History Export не запрашивает учетные данные, платежные данные, медицинские данные, точную геолокацию, контакты, содержимое писем и сообщений, cookies, пароли или токены авторизации.</p>
+
+      <h2>Как используются данные</h2>
+      <p>История браузера используется только для видимых пользователю функций: создания локальных файлов экспорта, предпросмотра, фильтров, выбора столбцов, импорта Takeout и опционального локального архива.</p>
+
+      <h2>Локальная обработка и хранение</h2>
+      <p>Вся обработка выполняется локально в браузере. Расширение не отправляет историю, импортированные файлы, экспортированные файлы, настройки или архивные записи разработчику или на сторонние серверы.</p>
+      <p>Пользователь может удалить локальные данные через кнопки очистки в расширении, через очистку данных браузера/расширений или удалив расширение.</p>
+
+      <h2>Передача данных</h2>
+      <p>Aura History Export не продает, не сдает в аренду, не передает и не раскрывает пользовательские данные третьим лицам. Данные не используются для рекламы, ретаргетинга, персонализированной рекламы, скоринга или брокерской торговли данными.</p>
+      <p>В расширении нет аналитики, телеметрии, загрузки удаленного кода, отслеживающих пикселей или обращений к внешним сервисам.</p>
+
+      <h2>Разрешения</h2>
+      <ul>
+        <li><code>history</code>: нужно для чтения истории браузера при экспорте, предпросмотре, фильтрации и опциональном заполнении локального архива.</li>
+        <li><code>storage</code>: нужно для локальных настроек расширения и флага включения локального архива.</li>
+      </ul>
+      <p>Расширение не запрашивает host permissions и не внедряет content scripts на сайты.</p>
+
+      <h2>Контакт</h2>
+      <p>Для вопросов о приватности или удалении данных используйте контактный канал разработчика на странице Aura History Export в Chrome Web Store.</p>
+    </main>
+  </body>
+</html>
