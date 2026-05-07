@@ -1,0 +1,560 @@
+:root {
+  color-scheme: light dark;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  color: #1d232a;
+  background: #f4f6f8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 780px;
+  min-height: 620px;
+  max-height: 720px;
+  margin: 0;
+  overflow: auto;
+  background: #f4f6f8;
+}
+
+.app {
+  min-height: 620px;
+  padding: 18px;
+}
+
+.app-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 18px;
+  align-items: end;
+  margin-bottom: 14px;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+
+.brand-logo {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+
+.mode-switch-bar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 12px;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.mode-switch-bar strong {
+  display: block;
+  margin-bottom: 2px;
+  color: #1d232a;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.mode-switch-bar span {
+  color: #5c6873;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.ios-switch {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  width: 52px;
+  height: 32px;
+}
+
+.ios-switch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ios-switch-track {
+  width: 52px;
+  height: 32px;
+  border-radius: 999px;
+  background: #cfd7df;
+  box-shadow: inset 0 0 0 1px rgba(38, 49, 59, 0.08);
+  transition: background 160ms ease;
+}
+
+.ios-switch-track::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(20, 28, 36, 0.28);
+  transition: transform 160ms ease;
+}
+
+.ios-switch input:checked + .ios-switch-track {
+  background: #0f766e;
+}
+
+.ios-switch input:checked + .ios-switch-track::after {
+  transform: translateX(20px);
+}
+
+.ios-switch input:disabled {
+  cursor: wait;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+p,
+.muted,
+.privacy-list {
+  color: #5c6873;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.language-field,
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.language-field span,
+.field span,
+.section-box summary {
+  color: #3e4954;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+select,
+input,
+textarea,
+button {
+  width: 100%;
+  border: 1px solid #cfd7df;
+  border-radius: 8px;
+  font: inherit;
+}
+
+select,
+input,
+textarea {
+  color: #1d232a;
+  background: #ffffff;
+}
+
+select,
+input {
+  min-height: 38px;
+  padding: 0 10px;
+}
+
+textarea {
+  min-height: 76px;
+  padding: 9px 10px;
+  resize: vertical;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  min-height: 16px;
+  margin: 0;
+  accent-color: #0f766e;
+}
+
+button {
+  min-height: 40px;
+  padding: 0 13px;
+  border-color: #0f766e;
+  color: #ffffff;
+  background: #0f766e;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+button.secondary {
+  border-color: #b9c4cf;
+  color: #26313b;
+  background: #ffffff;
+}
+
+button:disabled {
+  border-color: #93a3ad;
+  background: #93a3ad;
+  cursor: wait;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.tab-button {
+  min-height: 36px;
+  border-color: #d5dde5;
+  color: #35414c;
+  background: #ffffff;
+}
+
+.tab-button.is-active {
+  border-color: #0f766e;
+  color: #ffffff;
+  background: #0f766e;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.is-active {
+  display: grid;
+  gap: 12px;
+}
+
+.date-field.is-hidden {
+  display: none;
+}
+
+body.novice-mode {
+  width: 560px;
+  min-height: 420px;
+}
+
+body.novice-mode .app {
+  min-height: 420px;
+}
+
+body.novice-mode .app-header,
+body.novice-mode .expert-only {
+  display: none !important;
+}
+
+body.novice-mode .control-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body.novice-mode .checkbox-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.control-grid,
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.filter-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field.wide {
+  grid-column: 1 / -1;
+}
+
+.section-box {
+  padding: 12px;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.section-box summary {
+  cursor: pointer;
+}
+
+.section-box[open] summary {
+  margin-bottom: 10px;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px 14px;
+}
+
+.checkbox-grid label,
+.inline-checks label,
+.stacked-checks label,
+.switch-row {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  color: #26313b;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.inline-checks,
+.stacked-checks {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-height: 38px;
+  align-items: center;
+}
+
+.stacked-checks {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actions button {
+  width: auto;
+  min-width: 118px;
+}
+
+.status {
+  padding-top: 2px;
+}
+
+.status-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 30px;
+  color: #35414c;
+  font-size: 13px;
+}
+
+#statusText {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+#statusCount,
+#previewStats {
+  flex: 0 0 auto;
+  color: #64717d;
+  font-variant-numeric: tabular-nums;
+}
+
+progress {
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border: none;
+  border-radius: 999px;
+}
+
+progress::-webkit-progress-bar {
+  background: #dbe2e8;
+}
+
+progress::-webkit-progress-value {
+  background: #0f766e;
+}
+
+.preview {
+  min-height: 190px;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.preview-header h2 {
+  margin: 0;
+}
+
+.table-wrap {
+  max-height: 230px;
+  overflow: auto;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 12px;
+}
+
+th,
+td {
+  padding: 8px 9px;
+  border-bottom: 1px solid #edf1f4;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: #33404b;
+  background: #eef3f5;
+  font-weight: 750;
+}
+
+.import-box {
+  display: grid;
+  gap: 12px;
+}
+
+.privacy-list {
+  display: grid;
+  gap: 7px;
+  padding-left: 18px;
+}
+
+@media (max-width: 640px) {
+  body {
+    width: 420px;
+  }
+
+  .app-header,
+  .control-grid,
+  .filter-grid,
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.novice-mode {
+    width: 420px;
+  }
+
+  .tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #e7edf2;
+    background: #151a1f;
+  }
+
+  body,
+  .app {
+    background: #151a1f;
+  }
+
+  p,
+  .muted,
+  .privacy-list,
+  #statusCount,
+  #previewStats {
+    color: #a4b0ba;
+  }
+
+  .language-field span,
+  .field span,
+  .section-box summary,
+  .status-row {
+    color: #d7dfe6;
+  }
+
+  select,
+  input,
+  textarea,
+  .mode-switch-bar,
+  .section-box,
+  .table-wrap,
+  .tab-button,
+  button.secondary {
+    border-color: #3a4652;
+    color: #e7edf2;
+    background: #20272f;
+  }
+
+  .mode-switch-bar strong {
+    color: #e7edf2;
+  }
+
+  .mode-switch-bar span {
+    color: #a4b0ba;
+  }
+
+  .ios-switch-track {
+    background: #3a4652;
+  }
+
+  .checkbox-grid label,
+  .inline-checks label,
+  .stacked-checks label,
+  .switch-row {
+    color: #e7edf2;
+  }
+
+  th {
+    color: #e7edf2;
+    background: #27323d;
+  }
+
+  td,
+  th {
+    border-color: #303943;
+  }
+
+  progress::-webkit-progress-bar {
+    background: #303943;
+  }
+}

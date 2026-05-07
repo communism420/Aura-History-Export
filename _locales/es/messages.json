@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Aura History Export",
+    "description": "Nombre de la extension en Chromium."
+  },
+  "extensionDescription": {
+    "message": "Exportador open-source de historial de Chromium a formatos locales populares.",
+    "description": "Descripcion de la extension en Chromium."
+  }
+}

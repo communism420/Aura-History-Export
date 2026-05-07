@@ -1,0 +1,3 @@
+# Private extension signing keys must not be committed.
+dist/*.pem
+*.pem
