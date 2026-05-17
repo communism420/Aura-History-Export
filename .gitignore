@@ -1,3 +1,10 @@
 # Private extension signing keys must not be committed.
 dist/*.pem
 *.pem
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
