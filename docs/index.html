@@ -4,46 +4,402 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aura History Export</title>
-    <meta name="description" content="Public pages for Aura History Export.">
+    <meta name="description" content="Export browser history locally from Chromium and Firefox to XLSX, CSV, JSON, DOCX, TXT, and HTML.">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f7f8;
+        --surface: #ffffff;
+        --ink: #17212b;
+        --muted: #596775;
+        --line: #d7e0e5;
+        --teal: #0f766e;
+        --teal-dark: #0b5f59;
+        --blue: #1d4ed8;
+        --soft: #eaf6f4;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        background: #f5f8fb;
-        color: #17212b;
-        font: 16px/1.5 Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.6 Arial, Helvetica, sans-serif;
       }
-      main {
-        width: min(680px, calc(100% - 32px));
-        padding: 32px;
-        background: #fff;
-        border: 1px solid #d9e2ec;
-        border-radius: 8px;
+
+      a {
+        color: var(--blue);
+        text-underline-offset: 3px;
       }
-      img {
-        width: 72px;
-        height: 72px;
+
+      a:focus-visible {
+        outline: 3px solid #f59e0b;
+        outline-offset: 3px;
+      }
+
+      .wrap {
+        width: min(1040px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .header-inner {
+        min-height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--ink);
+        font-size: 17px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 40px;
+        height: 40px;
         object-fit: contain;
       }
-      h1 {
-        margin: 16px 0 8px;
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
       }
-      a {
-        color: #1667f2;
+
+      nav a {
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        color: var(--teal);
+      }
+
+      .hero {
+        padding: 54px 0 42px;
+      }
+
+      .version {
+        margin: 0 0 12px;
+        color: var(--teal-dark);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin: 0;
+        font-size: 48px;
+      }
+
+      .lead {
+        max-width: 720px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 20px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border: 1px solid var(--teal);
+        border-radius: 6px;
+        background: var(--teal);
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .button:hover {
+        border-color: var(--teal-dark);
+        background: var(--teal-dark);
+      }
+
+      .button.secondary {
+        border-color: #9eb4c2;
+        background: var(--surface);
+        color: var(--ink);
+      }
+
+      .button.secondary:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+      }
+
+      .button.pending {
+        border-color: #b7c3cb;
+        background: #edf1f3;
+        color: #4f5d68;
+        cursor: default;
+      }
+
+      .section {
+        padding: 44px 0;
+        border-top: 1px solid var(--line);
+        background: var(--surface);
+      }
+
+      .section h2 {
+        margin: 0;
+        font-size: 30px;
+      }
+
+      .section-intro {
+        max-width: 720px;
+        margin: 12px 0 0;
+        color: var(--muted);
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 32px;
+        margin-top: 30px;
+      }
+
+      .feature-grid h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .feature-grid p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .formats {
+        margin: 30px 0 0;
+        padding-top: 22px;
+        border-top: 1px solid var(--line);
+      }
+
+      code {
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: #eef2f5;
+        font-size: 14px;
+      }
+
+      .privacy {
+        padding: 40px 0;
+        border-top: 1px solid #bddbd6;
+        background: var(--soft);
+      }
+
+      .privacy-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+        gap: 44px;
+        align-items: center;
+      }
+
+      .privacy h2 {
+        margin: 0 0 10px;
+        font-size: 28px;
+      }
+
+      .privacy p {
+        margin: 0;
+        color: #334155;
+      }
+
+      .compatibility {
+        padding-left: 24px;
+        border-left: 1px solid #9dc9c2;
+      }
+
+      .compatibility strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      footer {
+        padding: 28px 0;
+        border-top: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 14px 24px;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      @media (max-width: 760px) {
+        .wrap {
+          width: min(100% - 28px, 1040px);
+        }
+
+        .header-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+          padding: 12px 0 14px;
+        }
+
+        nav {
+          flex-wrap: wrap;
+          gap: 10px 16px;
+        }
+
+        .hero {
+          padding: 38px 0 34px;
+        }
+
+        h1 {
+          font-size: 36px;
+        }
+
+        .lead {
+          font-size: 18px;
+        }
+
+        .actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .feature-grid,
+        .privacy-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .feature-grid {
+          gap: 24px;
+        }
+
+        .compatibility {
+          padding: 18px 0 0;
+          border-top: 1px solid #9dc9c2;
+          border-left: 0;
+        }
       }
     </style>
   </head>
   <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="index.html" aria-label="Aura History Export home">
+          <img src="logo.png" alt="">
+          <span>Aura History Export</span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="https://github.com/communism420/Aura-History-Export">Source code</a>
+        </nav>
+      </div>
+    </header>
+
     <main>
-      <img src="logo.png" alt="">
-      <h1>Aura History Export</h1>
-      <p>Fully open-source Chromium browser history export to different popular formats</p>
-      <p><a href="https://github.com/communism420/Aura-History-Export">Source Code</a></p>
-      <p><a href="privacy-policy.html">Privacy Policy</a></p>
+      <section class="hero">
+        <div class="wrap">
+          <p class="version">Version 1.0.3 | Chromium 121+ | Firefox Desktop 142+</p>
+          <h1>Aura History Export</h1>
+          <p class="lead">Export the browsing history available in your current profile to useful local files, with filters, previews, Google Takeout import, and an optional local archive.</p>
+          <div class="actions" aria-label="Install Aura History Export">
+            <a class="button" href="https://chromewebstore.google.com/detail/aura-history-export/fijdmhnlcbhdakojcljlpebkdgpippma">Chrome Web Store</a>
+            <span class="button pending" aria-label="Firefox Add-ons publication pending">Firefox Add-ons: review pending</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="wrap">
+          <h2>Export the history you need</h2>
+          <p class="section-intro">Choose the current day, a preset period, or a custom date range. Everything is processed inside the browser profile.</p>
+          <div class="feature-grid">
+            <div>
+              <h3>Flexible selection</h3>
+              <p>Search records, include or exclude domains and protocols, hide localhost entries, and choose the columns to export.</p>
+            </div>
+            <div>
+              <h3>Preview and organize</h3>
+              <p>Preview the first 100 rows, group results by domain, and combine browser history with imported Takeout data.</p>
+            </div>
+            <div>
+              <h3>Optional local archive</h3>
+              <p>Keep new visits in IndexedDB for later exports and clear the archive at any time from the extension.</p>
+            </div>
+          </div>
+          <p class="formats"><strong>Export formats:</strong> <code>XLSX</code> <code>CSV</code> <code>JSON</code> <code>DOCX</code> <code>TXT</code> <code>HTML</code></p>
+        </div>
+      </section>
+
+      <section class="privacy">
+        <div class="wrap privacy-inner">
+          <div>
+            <h2>Your history stays local</h2>
+            <p>Aura History Export has no analytics, telemetry, ads, remote code, or external service calls. History, imported files, settings, and archive data are not sent to the developer or third parties. <a href="privacy-policy.html">Read the privacy policy</a>.</p>
+          </div>
+          <div class="compatibility">
+            <strong>Desktop browser support</strong>
+            <p>Chromium-based browsers 121 or newer and Firefox Desktop 142 or newer.</p>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer>
+      <div class="wrap footer-inner">
+        <span>Aura History Export is open source under the MIT License.</span>
+        <div class="footer-links">
+          <a href="https://github.com/communism420/Aura-History-Export">GitHub</a>
+          <a href="mailto:yarik.vereshchagin1996@gmail.com">Support</a>
+          <a href="privacy-policy.html">Privacy</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

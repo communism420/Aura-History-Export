@@ -1,10 +1,10 @@
 {
   "extensionName": {
     "message": "Aura History Export",
-    "description": "Назва розширення в інтерфейсі Chromium."
+    "description": "Назва розширення в інтерфейсі браузера."
   },
   "extensionDescription": {
-    "message": "Повністю open-source експорт історії Chromium-браузера в популярні локальні формати.",
-    "description": "Опис розширення в інтерфейсі Chromium."
+    "message": "Повністю open-source експорт історії Chromium-браузерів і Firefox у популярні локальні формати.",
+    "description": "Опис розширення в інтерфейсі браузера."
   }
 }

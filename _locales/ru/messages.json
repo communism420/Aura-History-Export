@@ -1,17 +1,20 @@
 {
   "extensionName": {
     "message": "Aura History Export",
-    "description": "Название расширения в интерфейсе Chromium."
+    "description": "Название расширения в интерфейсе браузера."
   },
   "extensionDescription": {
-    "message": "Полностью open-source экспорт истории Chromium-браузера в популярные локальные форматы.",
-    "description": "Описание расширения в интерфейсе Chromium."
+    "message": "Полностью open-source экспорт истории Chromium-браузеров и Firefox в популярные локальные форматы.",
+    "description": "Описание расширения в интерфейсе браузера."
   },
   "subtitle": {
-    "message": "Экспорт истории Chromium"
+    "message": "Кроссплатформенный экспорт истории"
   },
   "rangeLabel": {
     "message": "Период"
+  },
+  "rangeToday": {
+    "message": "Сегодня"
   },
   "rangeLastDay": {
     "message": "Последние 24 часа"

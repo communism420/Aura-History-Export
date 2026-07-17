@@ -1,17 +1,20 @@
 {
   "extensionName": {
     "message": "Aura History Export",
-    "description": "Extension name shown in Chromium UI."
+    "description": "Extension name shown in the browser UI."
   },
   "extensionDescription": {
-    "message": "Fully open-source Chromium browser history export to different popular formats",
-    "description": "Extension description shown in Chromium UI."
+    "message": "Fully open-source browser history export for Chromium and Firefox to popular local formats",
+    "description": "Extension description shown in the browser UI."
   },
   "subtitle": {
-    "message": "Chromium history export"
+    "message": "Cross-browser history export"
   },
   "rangeLabel": {
     "message": "Range"
+  },
+  "rangeToday": {
+    "message": "Today"
   },
   "rangeLastDay": {
     "message": "Last 24 hours"

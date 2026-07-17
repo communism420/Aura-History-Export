@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aura History Export Privacy Policy</title>
-    <meta name="description" content="Privacy Policy for the Aura History Export Chromium extension.">
+    <meta name="description" content="Privacy Policy for the Aura History Export extension for Chromium and Firefox.">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     <style>
@@ -58,6 +58,9 @@
       p, li {
         color: var(--ink);
       }
+      a, code {
+        overflow-wrap: anywhere;
+      }
       .muted {
         margin: 0;
         color: var(--muted);
@@ -88,10 +91,10 @@
   <body>
     <main>
       <header>
-        <img src="logo.png" alt="">
+        <a href="index.html" aria-label="Aura History Export home"><img src="logo.png" alt=""></a>
         <div>
           <h1>Aura History Export Privacy Policy</h1>
-          <p class="muted">Last updated: May 8, 2026</p>
+          <p class="muted">Last updated: July 17, 2026</p>
         </div>
       </header>
 
@@ -109,7 +112,7 @@
 
       <h2>Data the Extension Handles</h2>
       <ul>
-        <li>Browser history records available through the Chromium History API, including URLs, page titles, domains, visit times, visit counts, typed counts, transition types, and referring visit IDs.</li>
+        <li>Browser history records available through the browser's WebExtensions History API, including URLs, page titles, domains, visit times, visit counts, typed counts, transition types, and referring visit IDs.</li>
         <li>Files the user explicitly imports from Google Takeout or compatible history exports.</li>
         <li>Local export settings, selected language, interface mode, filters, selected columns, and local archive settings.</li>
         <li>Optional local archive records saved after the user enables the local archive feature.</li>
@@ -127,13 +130,15 @@
       <p>Aura History Export does not sell, rent, share, transfer, or disclose user data to third parties. It does not use user data for advertising, retargeting, personalized ads, credit checks, or data-broker activity.</p>
       <p>The extension contains no analytics, telemetry, remote code loading, tracking pixels, or external service calls.</p>
 
-      <h2>Chrome Web Store Limited Use Disclosure</h2>
+      <h2>Extension Store Data Disclosures</h2>
+      <p><strong>Chrome Web Store Limited Use.</strong> Aura History Export's use of browser history data complies with the Chrome Web Store User Data Policy, including Limited Use requirements:</p>
       <ul>
         <li>Allowed use: browser history data is used only to provide and improve the extension's single purpose and user-facing export/archive/import features.</li>
         <li>Allowed transfer: the extension does not transfer user data to the developer or third parties.</li>
         <li>Prohibited advertising: user data is not used or transferred for advertising.</li>
         <li>Prohibited human interaction: no developer, employee, or contractor can read user history through the extension because the extension does not transmit it.</li>
       </ul>
+      <p><strong>Firefox Add-ons data collection.</strong> The Firefox package declares <code>browser_specific_settings.gecko.data_collection_permissions.required</code> as <code>["none"]</code>. It does not collect or transmit personal data or technical data off the user's device for processing.</p>
 
       <h2>Permissions</h2>
       <ul>
@@ -143,21 +148,21 @@
       <p>The extension does not request host permissions and does not inject content scripts into websites.</p>
 
       <h2>Security</h2>
-      <p>Because user data stays local, there is no network transmission of personal or sensitive user data by the extension. If this policy is hosted on a website, the website should be served over HTTPS.</p>
+      <p>Because user data stays local, there is no network transmission of personal or sensitive user data by the extension. The official website and this policy are published over HTTPS at <a href="https://aurahistoryexport.pages.dev/">aurahistoryexport.pages.dev</a>.</p>
 
       <h2>Children</h2>
       <p>Aura History Export is not directed to children under 13. The extension does not knowingly collect personal information from children.</p>
 
       <h2>Changes</h2>
-      <p>This policy may be updated when the extension's functionality or data practices change. Material changes should be reflected in the Chrome Web Store listing and in this policy before or at the time the updated extension is published.</p>
+      <p>This policy may be updated when the extension's functionality or data practices change. Material changes should be reflected in the applicable browser extension store listings and in this policy before or at the time the updated extension is published.</p>
 
       <h2>Contact</h2>
-      <p>Use the developer contact channel listed on the Aura History Export Chrome Web Store page for privacy questions or deletion requests.</p>
+      <p>For privacy questions, contact <a href="mailto:yarik.vereshchagin1996@gmail.com">yarik.vereshchagin1996@gmail.com</a>. The extension has no developer account or server-side user data to delete; local data remains under the user's control and can be cleared from the extension or browser profile.</p>
 
       <hr>
 
       <h1>Политика конфиденциальности Aura History Export</h1>
-      <p class="muted">Дата обновления: 8 мая 2026 года</p>
+      <p class="muted">Дата обновления: 17 июля 2026 года</p>
 
       <h2>Основная цель</h2>
       <p>У Aura History Export одна цель: дать пользователю экспортировать, импортировать, фильтровать, просматривать и локально архивировать историю браузера в локальные файлы.</p>
@@ -169,7 +174,7 @@
 
       <h2>Какие данные обрабатывает расширение</h2>
       <ul>
-        <li>Записи истории браузера, доступные через Chromium History API: URL, названия страниц, домены, время посещений, количество посещений, количество ручных вводов, типы переходов и ID визитов-источников.</li>
+        <li>Записи истории браузера, доступные через WebExtensions History API браузера: URL, названия страниц, домены, время посещений, количество посещений, количество ручных вводов, типы переходов и ID визитов-источников.</li>
         <li>Файлы Google Takeout или совместимые файлы истории, которые пользователь явно выбрал для импорта.</li>
         <li>Локальные настройки экспорта, выбранный язык, режим интерфейса, фильтры, выбранные столбцы и настройки локального архива.</li>
         <li>Записи локального архива, если пользователь включил архивирование.</li>
@@ -187,6 +192,16 @@
       <p>Aura History Export не продает, не сдает в аренду, не передает и не раскрывает пользовательские данные третьим лицам. Данные не используются для рекламы, ретаргетинга, персонализированной рекламы, скоринга или брокерской торговли данными.</p>
       <p>В расширении нет аналитики, телеметрии, загрузки удаленного кода, отслеживающих пикселей или обращений к внешним сервисам.</p>
 
+      <h2>Раскрытие данных для магазинов расширений</h2>
+      <p><strong>Chrome Web Store Limited Use.</strong> Использование истории браузера соответствует Chrome Web Store User Data Policy, включая требования Limited Use:</p>
+      <ul>
+        <li>история применяется только для основной цели расширения и пользовательских функций экспорта, архива и импорта;</li>
+        <li>расширение не передает пользовательские данные разработчику или третьим лицам;</li>
+        <li>пользовательские данные не используются и не передаются для рекламы;</li>
+        <li>разработчик, сотрудники или подрядчики не могут читать историю пользователя через расширение, потому что расширение ее не отправляет.</li>
+      </ul>
+      <p><strong>Сбор данных Firefox Add-ons.</strong> Firefox-пакет объявляет <code>browser_specific_settings.gecko.data_collection_permissions.required</code> со значением <code>["none"]</code>. Расширение не собирает и не передает персональные или технические данные за пределы устройства пользователя для обработки.</p>
+
       <h2>Разрешения</h2>
       <ul>
         <li><code>history</code>: нужно для чтения истории браузера при экспорте, предпросмотре, фильтрации и опциональном заполнении локального архива.</li>
@@ -195,7 +210,7 @@
       <p>Расширение не запрашивает host permissions и не внедряет content scripts на сайты.</p>
 
       <h2>Контакт</h2>
-      <p>Для вопросов о приватности или удалении данных используйте контактный канал разработчика на странице Aura History Export в Chrome Web Store.</p>
+      <p>По вопросам приватности напишите на <a href="mailto:yarik.vereshchagin1996@gmail.com">yarik.vereshchagin1996@gmail.com</a>. У расширения нет аккаунта разработчика или серверных пользовательских данных, которые требуется удалять: локальные данные контролирует пользователь, и их можно очистить в расширении или профиле браузера.</p>
     </main>
   </body>
 </html>

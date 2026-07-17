@@ -1,8 +1,8 @@
 # Aura History Export Privacy Policy
 
-Last updated: April 26, 2026
+Last updated: July 17, 2026
 
-Aura History Export is a Chromium extension for exporting browser history to local files and, when the user enables it, keeping a local browser-profile archive for future exports.
+Aura History Export is an extension for Chromium and Firefox that exports browser history to local files and, when the user enables it, keeps a local browser-profile archive for future exports.
 
 ## Single Purpose
 
@@ -22,7 +22,7 @@ Open-source availability does not change the extension's data practices: user da
 
 The extension may handle these data types inside the user's browser profile:
 
-- Browser history records available through the Chromium History API, including URLs, page titles, domains, visit times, visit counts, typed counts, transition types, and referring visit IDs.
+- Browser history records available through the browser's WebExtensions History API, including URLs, page titles, domains, visit times, visit counts, typed counts, transition types, and referring visit IDs.
 - Files the user explicitly imports from Google Takeout or compatible history exports.
 - Local export settings, selected language, interface mode, filters, selected columns, and local archive settings.
 - Optional local archive records saved after the user enables the local archive feature.
@@ -53,7 +53,9 @@ Aura History Export does not sell, rent, share, transfer, or disclose user data 
 
 The extension contains no analytics, telemetry, remote code loading, tracking pixels, or external service calls.
 
-## Chrome Web Store Limited Use Disclosure
+## Extension Store Data Disclosures
+
+### Chrome Web Store Limited Use
 
 Aura History Export's use of browser history data complies with the Chrome Web Store User Data Policy, including Limited Use requirements:
 
@@ -61,6 +63,10 @@ Aura History Export's use of browser history data complies with the Chrome Web S
 - Allowed transfer: the extension does not transfer user data to the developer or third parties.
 - Prohibited advertising: user data is not used or transferred for advertising.
 - Prohibited human interaction: no developer, employee, or contractor can read user history through the extension because the extension does not transmit it.
+
+### Firefox Add-ons Data Collection
+
+The Firefox package declares `browser_specific_settings.gecko.data_collection_permissions.required` as `["none"]`. It does not collect or transmit personal data or technical data off the user's device for processing.
 
 ## Permissions
 
@@ -73,7 +79,7 @@ The extension does not request host permissions and does not inject content scri
 
 ## Security
 
-Because user data stays local, there is no network transmission of personal or sensitive user data by the extension. If this policy is hosted on a website, the website should be served over HTTPS.
+Because user data stays local, there is no network transmission of personal or sensitive user data by the extension. The official website and this policy are published over HTTPS at https://aurahistoryexport.pages.dev/.
 
 ## Children
 
@@ -81,19 +87,19 @@ Aura History Export is not directed to children under 13. The extension does not
 
 ## Changes
 
-This policy may be updated when the extension's functionality or data practices change. Material changes should be reflected in the Chrome Web Store listing and in this policy before or at the time the updated extension is published.
+This policy may be updated when the extension's functionality or data practices change. Material changes should be reflected in the applicable browser extension store listings and in this policy before or at the time the updated extension is published.
 
 ## Contact
 
-Use the developer contact channel listed on the Aura History Export Chrome Web Store page for privacy questions or deletion requests.
+For privacy questions, contact yarik.vereshchagin1996@gmail.com. The extension has no developer account or server-side user data to delete; local data remains under the user's control and can be cleared from the extension or browser profile.
 
 ---
 
 # Политика конфиденциальности Aura History Export
 
-Дата обновления: 26 апреля 2026 года
+Дата обновления: 17 июля 2026 года
 
-Aura History Export - расширение Chromium для экспорта истории браузера в локальные файлы и, если пользователь включит эту функцию, ведения локального архива в профиле браузера.
+Aura History Export - расширение для Chromium и Firefox, которое экспортирует историю браузера в локальные файлы и, если пользователь включит эту функцию, ведет локальный архив в профиле браузера.
 
 ## Основная цель
 
@@ -113,7 +119,7 @@ https://github.com/communism420/Aura-History-Export
 
 Расширение может обрабатывать внутри профиля браузера:
 
-- записи истории браузера, доступные через Chromium History API: URL, названия страниц, домены, время посещений, количество посещений, количество ручных вводов, типы переходов и ID визитов-источников;
+- записи истории браузера, доступные через WebExtensions History API браузера: URL, названия страниц, домены, время посещений, количество посещений, количество ручных вводов, типы переходов и ID визитов-источников;
 - файлы Google Takeout или совместимые файлы истории, которые пользователь явно выбрал для импорта;
 - локальные настройки экспорта, выбранный язык, режим интерфейса, фильтры, выбранные столбцы и настройки локального архива;
 - записи локального архива, если пользователь включил архивирование.
@@ -144,7 +150,9 @@ Aura History Export не продает, не сдает в аренду, не �
 
 В расширении нет аналитики, телеметрии, загрузки удаленного кода, отслеживающих пикселей или обращений к внешним сервисам.
 
-## Раскрытие Limited Use для Chrome Web Store
+## Раскрытие данных для магазинов расширений
+
+### Chrome Web Store Limited Use
 
 Использование истории браузера в Aura History Export соответствует Chrome Web Store User Data Policy, включая Limited Use:
 
@@ -152,6 +160,10 @@ Aura History Export не продает, не сдает в аренду, не �
 - разрешенная передача: расширение не передает пользовательские данные разработчику или третьим лицам;
 - запрет рекламы: пользовательские данные не используются и не передаются для рекламы;
 - запрет чтения людьми: разработчик, сотрудники или подрядчики не могут читать историю пользователя через расширение, потому что расширение ее не отправляет.
+
+### Сбор данных Firefox Add-ons
+
+Firefox-пакет объявляет `browser_specific_settings.gecko.data_collection_permissions.required` со значением `["none"]`. Расширение не собирает и не передает персональные или технические данные за пределы устройства пользователя для обработки.
 
 ## Разрешения
 
@@ -164,7 +176,7 @@ Aura History Export не продает, не сдает в аренду, не �
 
 ## Безопасность
 
-Так как пользовательские данные остаются локально, расширение не передает персональные или чувствительные данные по сети. Если эта политика размещается на сайте, сайт должен работать по HTTPS.
+Так как пользовательские данные остаются локально, расширение не передает персональные или чувствительные данные по сети. Официальный сайт и эта политика опубликованы по HTTPS: https://aurahistoryexport.pages.dev/.
 
 ## Дети
 
@@ -172,8 +184,8 @@ Aura History Export не предназначено для детей младш
 
 ## Изменения
 
-Политика может обновляться при изменении функций или практик обработки данных. Существенные изменения должны отражаться в странице Chrome Web Store и этой политике до публикации обновления или одновременно с ним.
+Политика может обновляться при изменении функций или практик обработки данных. Существенные изменения должны отражаться в страницах соответствующих магазинов расширений и этой политике до публикации обновления или одновременно с ним.
 
 ## Контакт
 
-Для вопросов о приватности или удалении данных используйте контактный канал разработчика на странице Aura History Export в Chrome Web Store.
+По вопросам приватности напишите на yarik.vereshchagin1996@gmail.com. У расширения нет аккаунта разработчика или серверных пользовательских данных, которые требуется удалять: локальные данные контролирует пользователь, и их можно очистить в расширении или профиле браузера.

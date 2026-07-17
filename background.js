@@ -1,5 +1,7 @@
 "use strict";
 
+const extensionApi = globalThis.browser ?? globalThis.chrome;
+const usesPromiseExtensionApi = typeof globalThis.browser !== "undefined";
 const DB_NAME = "history-export-db";
 const DB_VERSION = 1;
 const STORE_RECORDS = "records";
@@ -7,12 +9,12 @@ const ARCHIVE_ENABLED_KEY = "archiveEnabled";
 const ARCHIVE_TITLE_REFRESH_DELAY_MS = 1500;
 const ARCHIVE_TITLE_REFRESH_WINDOW_MS = 60_000;
 
-chrome.runtime.onInstalled.addListener(async () => {
+extensionApi.runtime.onInstalled.addListener(async () => {
   const settings = await storageGet({ [ARCHIVE_ENABLED_KEY]: false });
   await storageSet({ [ARCHIVE_ENABLED_KEY]: Boolean(settings[ARCHIVE_ENABLED_KEY]) });
 });
 
-chrome.history.onVisited.addListener(async (item) => {
+extensionApi.history.onVisited.addListener(async (item) => {
   try {
     const settings = await storageGet({ [ARCHIVE_ENABLED_KEY]: false });
     if (!settings[ARCHIVE_ENABLED_KEY]) {
@@ -29,7 +31,7 @@ chrome.history.onVisited.addListener(async (item) => {
   }
 });
 
-chrome.history.onVisitRemoved.addListener(async (removed) => {
+extensionApi.history.onVisitRemoved.addListener(async (removed) => {
   try {
     if (removed.allHistory) {
       await clearRecordsBySource("archive");
@@ -43,29 +45,12 @@ chrome.history.onVisitRemoved.addListener(async (removed) => {
 });
 
 function storageGet(defaults) {
-  return new Promise((resolve, reject) => {
-    chrome.storage.local.get(defaults, (result) => {
-      const error = chrome.runtime.lastError;
-      if (error) {
-        reject(new Error(error.message));
-        return;
-      }
-      resolve(result || defaults);
-    });
-  });
+  return callExtensionApi(extensionApi.storage.local, "get", defaults)
+    .then((result) => result || defaults);
 }
 
 function storageSet(values) {
-  return new Promise((resolve, reject) => {
-    chrome.storage.local.set(values, () => {
-      const error = chrome.runtime.lastError;
-      if (error) {
-        reject(new Error(error.message));
-        return;
-      }
-      resolve();
-    });
-  });
+  return callExtensionApi(extensionApi.storage.local, "set", values);
 }
 
 async function refreshVisitedItemTitle(item) {
@@ -91,15 +76,37 @@ async function refreshVisitedItemTitle(item) {
 }
 
 function historySearch(query) {
+  return callExtensionApi(extensionApi.history, "search", query)
+    .then((result) => result || []);
+}
+
+function callExtensionApi(apiObject, methodName, ...args) {
+  const method = apiObject?.[methodName];
+  if (typeof method !== "function") {
+    return Promise.reject(new Error(`Unsupported extension API method: ${methodName}`));
+  }
+
+  if (usesPromiseExtensionApi) {
+    try {
+      return Promise.resolve(method.apply(apiObject, args));
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
   return new Promise((resolve, reject) => {
-    chrome.history.search(query, (result) => {
-      const error = chrome.runtime.lastError;
-      if (error) {
-        reject(new Error(error.message));
-        return;
-      }
-      resolve(result || []);
-    });
+    try {
+      method.call(apiObject, ...args, (result) => {
+        const error = extensionApi.runtime.lastError;
+        if (error) {
+          reject(new Error(error.message));
+          return;
+        }
+        resolve(result);
+      });
+    } catch (error) {
+      reject(error);
+    }
   });
 }
 

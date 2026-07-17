@@ -53,6 +53,7 @@
           <label class="field">
             <span data-i18n="rangeLabel">Range</span>
             <select id="range">
+              <option value="today" data-i18n="rangeToday">Today</option>
               <option value="1" data-i18n="rangeLastDay">Last 24 hours</option>
               <option value="7" data-i18n="rangeLastWeek" selected>Last 7 days</option>
               <option value="30" data-i18n="rangeLastMonth">Last 30 days</option>
@@ -197,7 +198,7 @@
       <section class="tab-panel" data-tab-panel="archive">
         <div class="section-box">
           <h2 data-i18n="archiveTitle">Local archive</h2>
-          <p data-i18n="archiveHint">When enabled, new visits are saved locally in this browser profile so future exports can keep them after Chrome removes older local history.</p>
+          <p data-i18n="archiveHint">When enabled, new visits are saved locally in this browser profile so future exports can keep them after the browser removes older local history.</p>
           <label class="switch-row">
             <input id="archiveEnabled" type="checkbox">
             <span data-i18n="archiveEnableLabel">Save new visits to local archive</span>

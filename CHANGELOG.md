@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.0.3
+
+- Added Firefox Desktop 142+ support through a cross-browser WebExtensions API adapter.
+- Added a stable Gecko extension ID and Mozilla Add-ons data-collection declaration.
+- Added a Firefox-specific release manifest and submission ZIP without Chromium-only background settings, eliminating AMO validation warnings.
+- Updated extension metadata, interface text, documentation, and privacy disclosures for Chromium and Firefox.
+- Updated the official website with current store links, compatibility details, export features, and local-only privacy information.
+- Added Mozilla Add-ons listing, reviewer notes, and release documentation for the Firefox package.
+- Bumped the extension version to `1.0.3`.
+
+## 1.0.2
+
+- Added a Today range that exports the current local calendar day instead of a rolling 24-hour window.
+- Bumped the extension version to `1.0.2`.
+
 ## 1.0.1
 
 - Changed browser-history export to use current `chrome.history.search` entries instead of expanding each URL into older visits from `chrome.history.getVisits`.

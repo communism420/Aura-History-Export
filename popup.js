@@ -1,5 +1,7 @@
 "use strict";
 
+const extensionApi = globalThis.browser ?? globalThis.chrome;
+const usesPromiseExtensionApi = typeof globalThis.browser !== "undefined";
 const MIME_TYPES = {
   xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   csv: "text/csv;charset=utf-8",
@@ -24,8 +26,8 @@ const CHROME_EPOCH_OFFSET_MS = 11644473600000;
 const I18N = {
   en: {
     extensionName: "Aura History Export",
-    extensionDescription: "Exports Chromium browser history into clean local files.",
-    subtitle: "Professional local history export",
+    extensionDescription: "Exports browser history from Chromium and Firefox into clean local files.",
+    subtitle: "Cross-browser history export",
     languageLabel: "Language",
     languageEnglish: "English",
     languageRussian: "Russian",
@@ -41,6 +43,7 @@ const I18N = {
     tabArchive: "Archive",
     tabPrivacy: "Privacy",
     rangeLabel: "Range",
+    rangeToday: "Today",
     rangeLastDay: "Last 24 hours",
     rangeLastWeek: "Last 7 days",
     rangeLastMonth: "Last 30 days",
@@ -110,7 +113,7 @@ const I18N = {
     importComplete: "Imported $COUNT$ records.",
     importCleared: "Imported Takeout data cleared.",
     archiveTitle: "Local archive",
-    archiveHint: "When enabled, new visits are saved locally in this browser profile so future exports can keep them after Chrome removes older local history.",
+    archiveHint: "When enabled, new visits are saved locally in this browser profile so future exports can keep them after the browser removes older local history.",
     archiveEnableLabel: "Save new visits to local archive",
     backfillArchiveButton: "Archive current range",
     clearArchiveButton: "Clear local archive",
@@ -144,8 +147,8 @@ const I18N = {
   },
   ru: {
     extensionName: "Aura History Export",
-    extensionDescription: "Экспортирует историю Chromium-браузера в чистые локальные файлы.",
-    subtitle: "Профессиональный локальный экспорт истории",
+    extensionDescription: "Экспортирует историю Chromium-браузеров и Firefox в чистые локальные файлы.",
+    subtitle: "Кроссплатформенный экспорт истории",
     languageLabel: "Язык",
     languageEnglish: "Английский",
     languageRussian: "Русский",
@@ -161,6 +164,7 @@ const I18N = {
     tabArchive: "Архив",
     tabPrivacy: "Приватность",
     rangeLabel: "Период",
+    rangeToday: "Сегодня",
     rangeLastDay: "Последние 24 часа",
     rangeLastWeek: "Последние 7 дней",
     rangeLastMonth: "Последние 30 дней",
@@ -230,7 +234,7 @@ const I18N = {
     importComplete: "Импортировано записей: $COUNT$.",
     importCleared: "Импортированные данные Takeout очищены.",
     archiveTitle: "Локальный архив",
-    archiveHint: "Если включить архив, новые посещения будут сохраняться локально в этом профиле браузера, чтобы будущие экспорты могли сохранять их после удаления старой локальной истории Chrome.",
+    archiveHint: "Если включить архив, новые посещения будут сохраняться локально в этом профиле, чтобы будущие экспорты могли сохранять их после удаления старой локальной истории браузером.",
     archiveEnableLabel: "Сохранять новые посещения в локальный архив",
     backfillArchiveButton: "Архивировать текущий период",
     clearArchiveButton: "Очистить локальный архив",
@@ -264,8 +268,8 @@ const I18N = {
   },
   es: {
     extensionName: "Aura History Export",
-    extensionDescription: "Exporta el historial de Chromium a archivos locales limpios.",
-    subtitle: "Exportacion local profesional del historial",
+    extensionDescription: "Exporta el historial de Chromium y Firefox a archivos locales limpios.",
+    subtitle: "Exportacion de historial multiplataforma",
     languageLabel: "Idioma",
     languageEnglish: "Ingles",
     languageRussian: "Ruso",
@@ -281,6 +285,7 @@ const I18N = {
     tabArchive: "Archivo",
     tabPrivacy: "Privacidad",
     rangeLabel: "Periodo",
+    rangeToday: "Hoy",
     rangeLastDay: "Ultimas 24 horas",
     rangeLastWeek: "Ultimos 7 dias",
     rangeLastMonth: "Ultimos 30 dias",
@@ -384,8 +389,8 @@ const I18N = {
   },
   de: {
     extensionName: "Aura History Export",
-    extensionDescription: "Exportiert den Chromium-Verlauf in saubere lokale Dateien.",
-    subtitle: "Professioneller lokaler Verlaufsexport",
+    extensionDescription: "Exportiert den Verlauf aus Chromium und Firefox in saubere lokale Dateien.",
+    subtitle: "Browserübergreifender Verlaufsexport",
     languageLabel: "Sprache",
     languageEnglish: "Englisch",
     languageRussian: "Russisch",
@@ -401,6 +406,7 @@ const I18N = {
     tabArchive: "Archiv",
     tabPrivacy: "Datenschutz",
     rangeLabel: "Zeitraum",
+    rangeToday: "Heute",
     rangeLastDay: "Letzte 24 Stunden",
     rangeLastWeek: "Letzte 7 Tage",
     rangeLastMonth: "Letzte 30 Tage",
@@ -509,8 +515,8 @@ const I18N = {
 
 I18N.fr = {
   ...I18N.en,
-  extensionDescription: "Exporte l'historique Chromium vers des fichiers locaux propres.",
-  subtitle: "Export local professionnel de l'historique",
+  extensionDescription: "Exporte l'historique de Chromium et Firefox vers des fichiers locaux propres.",
+  subtitle: "Export multiplateforme de l'historique",
   languageLabel: "Langue",
   languageEnglish: "Anglais",
   languageRussian: "Russe",
@@ -526,6 +532,7 @@ I18N.fr = {
   tabArchive: "Archive",
   tabPrivacy: "Confidentialite",
   rangeLabel: "Periode",
+  rangeToday: "Aujourd'hui",
   rangeLastDay: "Dernieres 24 heures",
   rangeLastWeek: "7 derniers jours",
   rangeLastMonth: "30 derniers jours",
@@ -627,8 +634,8 @@ I18N.fr = {
 
 I18N.pt = {
   ...I18N.en,
-  extensionDescription: "Exporta o historico do Chromium para arquivos locais limpos.",
-  subtitle: "Exportacao local profissional do historico",
+  extensionDescription: "Exporta o historico do Chromium e Firefox para arquivos locais limpos.",
+  subtitle: "Exportacao de historico multiplataforma",
   languageLabel: "Idioma",
   languageEnglish: "Ingles",
   languageRussian: "Russo",
@@ -644,6 +651,7 @@ I18N.pt = {
   tabArchive: "Arquivo",
   tabPrivacy: "Privacidade",
   rangeLabel: "Periodo",
+  rangeToday: "Hoje",
   rangeLastDay: "Ultimas 24 horas",
   rangeLastWeek: "Ultimos 7 dias",
   rangeLastMonth: "Ultimos 30 dias",
@@ -745,8 +753,8 @@ I18N.pt = {
 
 I18N.uk = {
   ...I18N.ru,
-  extensionDescription: "Експортує історію Chromium-браузера у чисті локальні файли.",
-  subtitle: "Професійний локальний експорт історії",
+  extensionDescription: "Експортує історію Chromium-браузерів і Firefox у чисті локальні файли.",
+  subtitle: "Кросплатформний експорт історії",
   languageLabel: "Мова",
   languageEnglish: "Англійська",
   languageRussian: "Російська",
@@ -762,6 +770,7 @@ I18N.uk = {
   tabArchive: "Архів",
   tabPrivacy: "Приватність",
   rangeLabel: "Період",
+  rangeToday: "Сьогодні",
   rangeLastDay: "Останні 24 години",
   rangeLastWeek: "Останні 7 днів",
   rangeLastMonth: "Останні 30 днів",
@@ -1031,8 +1040,8 @@ function detectInitialLocale() {
     return savedLocale;
   }
 
-  const browserLocale = typeof chrome !== "undefined" && chrome.i18n?.getMessage
-    ? chrome.i18n.getMessage("@@ui_locale")
+  const browserLocale = extensionApi?.i18n?.getMessage
+    ? extensionApi.i18n.getMessage("@@ui_locale")
     : "";
   const navigatorLocale = typeof navigator !== "undefined" ? navigator.language : "";
   return toSupportedLocale(browserLocale || navigatorLocale) || DEFAULT_LOCALE;
@@ -1138,12 +1147,12 @@ function setChecked(element, value, fallback) {
 }
 
 async function initializeArchiveControls() {
-  const settings = await chromeStorageGet({ [ARCHIVE_ENABLED_KEY]: false });
+  const settings = await extensionStorageGet({ [ARCHIVE_ENABLED_KEY]: false });
   elements.archiveEnabled.checked = Boolean(settings[ARCHIVE_ENABLED_KEY]);
 }
 
 async function setArchiveEnabled(isEnabled) {
-  await chromeStorageSet({ [ARCHIVE_ENABLED_KEY]: isEnabled });
+  await extensionStorageSet({ [ARCHIVE_ENABLED_KEY]: isEnabled });
   elements.archiveStatus.textContent = t(isEnabled ? "archiveEnabled" : "archiveDisabled");
   await refreshArchiveStatus();
 }
@@ -1264,6 +1273,10 @@ function readDateRange() {
 
   if (range === "all") {
     return { startTime: 0, endTime: Number.MAX_SAFE_INTEGER, rangeLabel: "all" };
+  }
+
+  if (range === "today") {
+    return { startTime: startOfLocalDay(now), endTime: now, rangeLabel: "today" };
   }
 
   if (range === "custom") {
@@ -1442,7 +1455,7 @@ async function readHistoryPages(startTime, endTime) {
     query.endTime = endTime;
   }
 
-  return callChromeApi(chrome.history.search, query);
+  return callExtensionApi(extensionApi.history, "search", query);
 }
 
 async function readCurrentHistoryEntry(page, options) {
@@ -1475,18 +1488,27 @@ async function readCurrentHistoryEntry(page, options) {
 
 async function readCurrentVisitMetadata(url, lastVisitTime) {
   try {
-    const visits = await callChromeApi(chrome.history.getVisits, { url });
+    const visits = await callExtensionApi(extensionApi.history, "getVisits", { url });
     return visits.find((visit) => Math.round(Number(visit.visitTime)) === Math.round(lastVisitTime)) || null;
   } catch {
     return null;
   }
 }
 
-async function callChromeApi(apiFunction, ...args) {
+async function callExtensionApi(apiObject, methodName, ...args) {
+  const method = apiObject?.[methodName];
+  if (typeof method !== "function") {
+    throw new Error(`Unsupported extension API method: ${methodName}`);
+  }
+
+  if (usesPromiseExtensionApi) {
+    return method.apply(apiObject, args);
+  }
+
   return new Promise((resolve, reject) => {
     try {
-      apiFunction(...args, (result) => {
-        const error = chrome.runtime.lastError;
+      method.call(apiObject, ...args, (result) => {
+        const error = extensionApi.runtime.lastError;
         if (error) {
           reject(new Error(error.message));
           return;
@@ -1688,22 +1710,49 @@ function getOutputColumns(options) {
 function renderPreview(rows, options, records = []) {
   const tableHead = elements.previewTable.querySelector("thead");
   const tableBody = elements.previewTable.querySelector("tbody");
+  tableHead.replaceChildren();
+  tableBody.replaceChildren();
 
   if (!options) {
-    tableHead.innerHTML = "";
-    tableBody.innerHTML = `<tr><td>${escapeHtml(t("previewEmpty"))}</td></tr>`;
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.textContent = t("previewEmpty");
+    row.append(cell);
+    tableBody.append(row);
     elements.previewStats.textContent = "";
     return;
   }
 
   const columns = getOutputColumns(options);
   const shownRows = rows.slice(0, PREVIEW_LIMIT);
-  tableHead.innerHTML = `<tr>${columns.map((column) => `<th>${escapeHtml(t(column.labelKey, options.locale))}</th>`).join("")}</tr>`;
-  tableBody.innerHTML = shownRows.length === 0
-    ? `<tr><td colspan="${Math.max(columns.length, 1)}">${escapeHtml(t("statusNoRecords", options.locale))}</td></tr>`
-    : shownRows.map((row) => (
-      `<tr>${columns.map((column) => `<td>${escapeHtml(columnValue(column, row, options.locale))}</td>`).join("")}</tr>`
-    )).join("");
+  const headingRow = document.createElement("tr");
+
+  columns.forEach((column) => {
+    const heading = document.createElement("th");
+    heading.textContent = t(column.labelKey, options.locale);
+    headingRow.append(heading);
+  });
+  tableHead.append(headingRow);
+
+  if (shownRows.length === 0) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = Math.max(columns.length, 1);
+    cell.textContent = t("statusNoRecords", options.locale);
+    row.append(cell);
+    tableBody.append(row);
+  } else {
+    shownRows.forEach((dataRow) => {
+      const row = document.createElement("tr");
+
+      columns.forEach((column) => {
+        const cell = document.createElement("td");
+        cell.textContent = columnValue(column, dataRow, options.locale);
+        row.append(cell);
+      });
+      tableBody.append(row);
+    });
+  }
 
   const domainCount = new Set(records.map((record) => record.domain)).size || new Set(rows.map((row) => row.domain)).size;
   elements.previewStats.textContent = `${interpolate("previewStats", { COUNT: rows.length, DOMAINS: domainCount }, options.locale)} · ${interpolate("previewShown", { SHOWN: shownRows.length, TOTAL: rows.length }, options.locale)}`;
@@ -2353,38 +2402,21 @@ async function countRecordsBySource(source) {
   return count;
 }
 
-async function chromeStorageGet(defaults) {
-  if (!chrome.storage?.local) {
+async function extensionStorageGet(defaults) {
+  if (!extensionApi?.storage?.local) {
     return defaults;
   }
 
-  return new Promise((resolve, reject) => {
-    chrome.storage.local.get(defaults, (result) => {
-      const error = chrome.runtime.lastError;
-      if (error) {
-        reject(new Error(error.message));
-        return;
-      }
-      resolve(result || defaults);
-    });
-  });
+  const result = await callExtensionApi(extensionApi.storage.local, "get", defaults);
+  return result || defaults;
 }
 
-async function chromeStorageSet(values) {
-  if (!chrome.storage?.local) {
+async function extensionStorageSet(values) {
+  if (!extensionApi?.storage?.local) {
     return;
   }
 
-  await new Promise((resolve, reject) => {
-    chrome.storage.local.set(values, () => {
-      const error = chrome.runtime.lastError;
-      if (error) {
-        reject(new Error(error.message));
-        return;
-      }
-      resolve();
-    });
-  });
+  await callExtensionApi(extensionApi.storage.local, "set", values);
 }
 
 function parseCsv(text) {
@@ -2584,6 +2616,12 @@ function formatVisitTime(timestamp) {
 function dateInputValue(timestamp) {
   const date = new Date(timestamp);
   return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}`;
+}
+
+function startOfLocalDay(timestamp) {
+  const date = new Date(timestamp);
+  date.setHours(0, 0, 0, 0);
+  return date.getTime();
 }
 
 function parseDateStart(value) {
